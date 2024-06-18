@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<input type="search" name="q" placeholder="Query" autocomplete="off" autofocus>
+
+<ul id="results"></ul>
+
+<script>
+    let input = document.querySelector('input');
+    input.addEventListener('input', async function(){
+        let query = input.value;
+        let response = await fetch(`/search?q=${query}`);
+        let results = await response.json();
+        let ul = document.querySelector('#results');
+        ul.innerHTML = '';
+        for (let book of results) {
+            let li = document.createElement('li');
+            li.textContent = book.title;
+            ul.appendChild(li);
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1> BOOKS ON YOUR CART </h1>
+    {% for book in books %}
+        <li> {{ book["title"] }}</li>
+    {% endfor %}
+{% endblock %}
